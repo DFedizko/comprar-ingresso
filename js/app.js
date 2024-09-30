@@ -5,6 +5,11 @@ function comprar() {
     let qtdIngressosSuperior = parseInt(document.getElementById('qtd-superior').textContent);
     let qtdIngressosInferior = parseInt(document.getElementById('qtd-inferior').textContent);
 
+    if (isNaN(quantidade) || quantidade <= 0) {
+        alert('Quantidade de ingressos inválida!')
+        return;
+    }
+
     if (tipoIngresso == 'inferior') {
         if (quantidade > qtdIngressosInferior) {
             alert('Quantidade de ingressos indisponíveis para a cadeira inferior!');
@@ -12,7 +17,7 @@ function comprar() {
         } else {
             comprarIngresso('qtd-inferior', qtdIngressosInferior, quantidade);
         }
-        
+
     } else if (tipoIngresso == 'superior') {
         if (quantidade > qtdIngressosSuperior) {
             alert('Quantidade de ingressos indisponíveis para a cadeira superior!');
@@ -29,6 +34,8 @@ function comprar() {
             comprarIngresso('qtd-pista', qtdInngressosPista, quantidade);
         }
     } 
+
+    document.getElementById('qtd').value = '';
 }
 
 function comprarIngresso(id, qtdIngressos, quantidade) {
